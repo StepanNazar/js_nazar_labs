@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task6-7</title>
+    <script LANGUAGE='JavaScript'>
+        let product = ["Ноутбук", "Сканер", "Олівець", "Лінійка", "Точилка", "Гумка"];
+        let quantity = ["20", "30", "150", "100", "50", "75"];
+        let cost = ["10000", "5000", "5", "10", "3", "2"];
+        let index = -1;
+
+        function fun1() {
+            let chosenProduct = document.getElementById("productName").value;
+            let found = false;
+            for (let i = 0; i < product.length; i++) {
+                if (chosenProduct === product[i]) {
+                    index = i;
+                    document.getElementById("productQuantity").value = quantity[i];
+                    document.getElementById("productCost").value = cost[i];
+                    found = true;
+                    break;
+                }
+            }
+            document.getElementById("totalSum").innerHTML = "Загальна сума: ";
+            if (!found) {
+                index = -1;
+                document.getElementById("productQuantity").value = "";
+                document.getElementById("productCost").value = "";
+                alert("Товар не знайдено");
+            }
+        }
+
+        function fun2() {
+            if (index === -1) {
+                alert("Товар не знайдено");
+                return;
+            }
+            let chosenQuantity = parseInt(quantity[index]);
+            let chosenCost = parseFloat(cost[index]);
+            let totalSum = chosenQuantity * chosenCost;
+            document.getElementById("totalSum").innerHTML = "Загальна сума: " + totalSum;
+        }
+        function fun3(event) {
+            if (event.target.value)
+                document.getElementById("productName").value = event.target.value;
+        }
+    </script>
+
+</head>
+<body>
+<h3>
+    Завдання 6
+</h3>
+<form>
+    <label for="productNameSelect">Оберіть товар:</label>
+    <select id="productNameSelect" onchange="fun3(event)">
+        <option></option>
+    </select><br>
+    <label for="productName">Або напишіть його назву вручну:</label>
+    <input type="text" id="productName"><br><br>
+    <input type="button" value="Наявна кількість і вартість" onclick="fun1()"><br><br>
+    <label for="productQuantity">Кількість:</label>
+    <input type="text" id="productQuantity" readonly><br><br>
+    <label for="productCost">Вартість:</label>
+    <input type="text" id="productCost" readonly><br><br>
+    <input type="button" value="Загальна сума" onclick="fun2()"><br><br>
+    <p id="totalSum">Загальна сума:</p>
+</form>
+<script>
+    let productNameSelect = document.getElementById("productNameSelect");
+    for (let i = 0; i < product.length; i++) {
+        let option = document.createElement("option");
+        option.text = product[i];
+        productNameSelect.add(option);
+    }
+</script>
+</body>
+</html>

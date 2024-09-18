@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1-5</title>
+    <script language="JavaScript">
+        function factorial(n, cache = []) {
+            if (n === 0) {
+                return 1;
+            }
+            if (cache[n] !== undefined) {
+                return cache[n];
+            }
+            cache[n] = n * factorial(n - 1, cache);
+            return cache[n];
+        }
+
+        function calculation() {
+            let x = 12;
+            let y = 5;
+            let result = (1 - Math.pow(x, 2)) / Math.pow(y, 3);
+            alert(result);
+        }
+
+        function onClick3() {
+            let info = document.getElementById("info");
+            info.innerHTML = "Відбувся клік на текстовому елементі форми";
+        }
+
+        function onSelect3(event) {
+            let selected_text = event.target.value.substring(
+                event.target.selectionStart, event.target.selectionEnd);
+            let info = document.getElementById("info");
+            info.innerHTML = "Виділено текст у текстовому елементі форми: " + selected_text;
+
+        }
+
+        function task4() {
+            let x = parseFloat(document.getElementById("x4").value);
+            let y = parseFloat(document.getElementById("y4").value);
+            if (x < 10 || y > 3) {
+                alert(Math.pow(x, 2) + Math.pow(y, 2));
+            } else if (x > 2) {
+                alert(x - y + Math.pow(x, 2));
+            } else {
+                alert(Math.pow(x, 3) + 3 * x * y);
+            }
+        }
+
+        function task5() {
+            let x = parseFloat(document.getElementById("x5").value);
+            let y = parseFloat(document.getElementById("y5").value);
+            let z_output = document.getElementById("z5");
+            let z = 0;
+            for (let i = 7; i <= 11; i++) {
+                z += Math.pow(-1, i) * (x + y - factorial(i)) / factorial(i - 1);
+            }
+            z_output.value = z;
+        }
+    </script>
+</head>
+<body>
+<h3> Завдання 1.</H3>
+<p> Це звичайний HTML абзац.</p>
+<script language="JavaScript">
+    document.write("Привіт! Мене звати Назар Степан Іванович, студент групи ІПЗ-23.")
+</script>
+<p>Знову звичайний HTML абзац.</p>
+<form>
+    <input type="button" value="Click me" onClick="alert('Я народився 13.10.2006 року в місті Бурштин')">
+</form>
+<h3>Завдання 2.</h3>
+<p>let x = 12;<br>
+    let y = 5;<br>
+    let result = (1 - Math.pow(x, 2)) / Math.pow(y, 3);</p>
+<form>
+    <input type="button" value="Calculate" onClick="calculation()">
+</form>
+<h3>
+    Завдання 3.
+</h3>
+<form id="task3_form">
+    <input type="text" size="100" value="onClick" onclick="onClick3();"><br>
+    <input type="text" size="100" value="onSelect" onselect="onSelect3(event);"><br>
+    <p id="info"></p>
+</form>
+<h3>
+    Завдання 4.
+</h3>
+<form id="task4_form">
+    x<input type="text" id="x4" value="10"><br>
+    y<input type="text" id="y4" value="-2"><br>
+    <input type="button" onClick="task4();" value="Розрахувати">
+</form>
+
+<h3>
+    Завдання 5.
+</h3>
+<form id="task5_form">
+    x<input type="text" id="x5" value="10"><br>
+    y<input type="text" id="y5" value="-2"><br>
+    z<input type="text" id="z5" value=""><br>
+    <input type="button" onClick="task5();" value="Розрахувати">
+</form>
+
+
+</body>
+</html>
