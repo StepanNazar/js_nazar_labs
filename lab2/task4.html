@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task4-5</title>
+</head>
+<body>
+<script>
+    function task4() {
+        let a = 5;
+        let b = 2;
+        console.log("a =", a);
+        console.log("b =", b);
+        console.log("a % b = " + a % b);
+        console.log("a % b == 0 = " + (a % b === 0));
+        let arr = [1, "two", "three", 4, "five"];
+        console.log("arr =", arr);
+        console.log("output of console.log(`%d %s %s ${arr[4]} %s`, ...arr.slice(0, -1)) is: ");
+        console.log(`%d %s %s ${arr[4]} %s`, ...arr.slice(0, -1));
+    }
+
+    function task5() {
+
+        console.info("console.info() - інформаційне повідомлення");
+        console.warn("console.warn() - попередження");
+        console.error("console.error() - помилка");
+        console.info("console.dir() - виводить об'єкт Javascript у вигляді дерева");
+        console.dir(console);
+        console.info("console.dirxml() - виводить об'єкт HTML у вигляді дерева");
+        console.dirxml(document.body);
+        console.info("console.time() - початок вимірювання часу");
+        console.time("time");
+        for (let i = 0; i < 1000000; i++) {
+            // do nothing
+        }
+        console.info("console.timeEnd() - кінець вимірювання часу");
+        console.timeEnd("time");
+        console.info("console.profile() - початок профілювання");
+        console.profile("profile");
+        for (let i = 0; i < 1000000; i++) {
+            // do nothing
+        }
+        console.info("console.profileEnd() - кінець профілювання");
+        console.profileEnd("profile");
+        console.info("console.assert() - перевірка умови");
+        console.assert(1 === 1, "1 === 1");
+        console.assert(1 === 2, "1 === 2");
+    }
+</script>
+Відкрийте консоль браузера, щоб побачити результати виконання. <br>
+<button onclick="task4()">Завдання 4</button>
+<button onclick="task5()">Завдання 5</button>
+<button onclick="console.clear()">Очистити консоль</button>
+</body>
+</html>
