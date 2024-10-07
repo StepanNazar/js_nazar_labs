@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2-3</title>
+    <script>
+        const digits = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+        const letters_ua = ["а", "б", "в", "г", "ґ", "д", "е", "є", "ж", "з", "и", "і", "ї", "й", "к", "л",
+            "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ь", "ю", "я"];
+        const letters_en = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+            "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",]
+
+        function createKeyboard(letters = letters_ua) {
+            let keys = ""
+            digits.map((key) => {
+                keys += `<button onclick='addSymbol("${key}")'>${key}</button>`
+            })
+            keys += '<button onclick="backspace()">⌫</button>'
+            letters.map((key, index) => {
+                if (index % 11 === 0) {
+                    keys += "<br>"
+                }
+                keys += `<button onclick='addSymbol("${key}")'>${key}</button>`
+            })
+            keys += "<br><button onclick='addSymbol(\" \")' style='width: 150px'>‎ </button>"
+            if (letters === letters_ua)
+                keys += "<button onclick='createKeyboard(letters_en)'>UA</button>"
+            else
+                keys += "<button onclick='createKeyboard(letters_ua)'>EN</button>"
+
+            document.getElementById('screenKeyboard').innerHTML = keys +
+                "<br><button onclick='clean()'>Очистити поле</button>"
+        }
+
+        function clean() {
+            document.getElementById('display').value = "";
+        }
+
+        function addSymbol(key) {
+            document.getElementById('display').value += key;
+        }
+
+        function backspace() {
+            let display = document.getElementById('display');
+            display.value = display.value.slice(0, -1);
+        }
+
+
+    </script>
+</head>
+<body onload="createKeyboard()">
+<form>
+    <label for="display"></label><textarea id="display" cols="30" rows="10"></textarea>
+</form>
+<div id="screenKeyboard"></div>
+</body>
+</html>

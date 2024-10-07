@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task6</title>
+    <script>
+        function toggleVisibility(id) {
+            let element = document.getElementById(id);
+            if (element.style.display === 'none') {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+<!--Створити за допомогою JavaScript дерево для показу їєрархії.
+fruits
+    apple
+    pineapple;
+    appricot;
+    pear;
+    lemon;
+vegetables
+    potatoes;
+    beetroot;
+    carrots;
+    pear;
+Натискання на посилання згортає або розгортає перелік під-розділів.
+
+-->
+<ul>
+    <li><a href="#" onclick="toggleVisibility('fruits')">fruits</a>
+        <ul id="fruits" style="display: none">
+            <li>apple</li>
+            <li>pineapple</li>
+            <li>apricot</li>
+            <li>pear</li>
+            <li>lemon</li>
+        </ul>
+    </li>
+    <li><a href="#" onclick="toggleVisibility('vegetables')">vegetables</a>
+        <ul id="vegetables" style="display: none">
+            <li>potatoes</li>
+            <li>beetroot</li>
+            <li>carrots</li>
+            <li>pear</li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

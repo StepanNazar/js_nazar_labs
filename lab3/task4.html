@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task4</title>
+    <script>
+        function showImages(images){
+            generateHTML(images);
+        }
+
+        function generateHTML(images){
+            let index = 0;
+            let img = document.createElement('img');
+            img.src = images[index];
+            // width and height
+            img.style.width = '70%';
+            img.style.height = 'auto';
+            document.body.appendChild(img);
+            document.body.appendChild(document.createElement('br'));
+            let backward = document.createElement('button');
+            backward.innerText = 'Назад';
+            backward.onclick = function(){
+                index = (index - 1 + images.length) % images.length;
+                img.src = images[index];
+            };
+            document.body.appendChild(backward);
+            let forward = document.createElement('button');
+            forward.innerText = 'Вперед';
+            forward.onclick = function(){
+                index = (index + 1) % images.length;
+                img.src = images[index];
+            };
+            document.body.appendChild(forward);
+        }
+    </script>
+</head>
+<body onload="showImages(['01.jpg', '02.jpg', '03.png', '04.jpg'])">
+</body>
+</html>

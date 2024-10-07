@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+    <script>
+        function calculateSquareArea() {
+            let side = document.getElementById('side').value;
+            let result = document.getElementById('result');
+            result.value = side * side;
+        }
+    </script>
+</head>
+<body>
+<form>
+    <input type="text" id="side" oninput="calculateSquareArea()">
+    <label for="side">Сторона квадрата</label>
+    <br>
+    <input type="text" id="result" disabled>
+    <label for="result">Площа квадрата</label>
+</form>
+</body>
+</html>

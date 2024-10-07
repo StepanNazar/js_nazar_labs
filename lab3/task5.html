@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task5</title>
+    <script>
+        let score = 0;
+        let total = 0;
+        let operation;
+        let a;
+        let b;
+        let checked = false;
+
+        function nextQuestion() {
+            if (total == 5){
+                document.getElementById('question').innerText = 'Ви відповіли на всі питання';
+                document.getElementById('answer').style.display = 'none';
+                document.getElementById('result').style.display = 'none';
+                return;
+            }
+            operation = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+            a = Math.floor(Math.random() * 10);
+            b = Math.floor(Math.random() * 10);
+            document.getElementById('question').innerText = `${a} ${operation} ${b} =`;
+            checked = false;
+        }
+
+        function checkAnswer() {
+            if (checked) {
+                return;
+            }
+            checked = true;
+            let answer = document.getElementById('answer').value;
+            let correctAnswer;
+            switch (operation) {
+                case '+':
+                    correctAnswer = a + b;
+                    break;
+                case '-':
+                    correctAnswer = a - b;
+                    break;
+                case '*':
+                    correctAnswer = a * b;
+                    break;
+                case '/':
+                    correctAnswer = a / b;
+                    break;
+            }
+            if (answer == correctAnswer) {
+                score++;
+                document.getElementById('result').innerText = 'Правильно';
+            } else {
+                document.getElementById('result').innerText = `Помилка, правильна відповідь ${correctAnswer}`;
+            }
+            total++;
+            document.getElementById('score').innerText = `Загальний рахунок ${score / total * 100}% (${score} правильних відповідей з ${total})`;
+        }
+    </script>
+</head>
+<body>
+<p id="score">Загальний рахунок:</p>
+<button onclick="nextQuestion()">Наступне завдання</button>
+<label id="question" for="answer"></label>
+<input type="text" id="answer">
+<button onclick="checkAnswer()">Перевірити</button>
+<p id="result"></p>
+<script>
+    nextQuestion();
+</script>
+</body>
+</html>
