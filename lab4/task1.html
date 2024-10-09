@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+    <script>
+        function clear_result() {
+            document.getElementById('score').innerHTML = '';
+            let table_rows = document.querySelectorAll('#result tbody tr');
+            for (let i = 0; i < table_rows.length; i++) {
+                let row = table_rows[i];
+                let cells = row.querySelectorAll('td');
+                for (let j = 1; j < cells.length; j++) {
+                    cells[j].innerHTML = '';
+                }
+            }
+        }
+        function check_answers() {
+            clear_result()
+            let result = document.getElementById('result');
+            let score = 0;
+            let answers = [];
+            for (let i = 1; i <= 6; i++){
+                if (i < 5){
+                    answers.push(document.querySelectorAll(`#q${i} input`));
+                } else {
+                    answers.push(document.querySelectorAll(`#q${i} option`));
+                }
+            }
+            let answer7 = document.getElementById("q7").value
+            for (let i = 0; i < 4; i++){
+                for (let j = 0; j < 4; j++){
+                    if (answers[i][j].checked){
+                        document.querySelector(`#result tbody tr:nth-child(${i + 1}) td:nth-child(${j + 2})`).innerHTML = "+";
+                    }
+                }
+                document.querySelector(`#result tbody tr:nth-child(${i + 1}) td:last-child`).innerHTML = "0";
+            }
+            for (let i = 4; i < 6; i++){
+                for (let j = 0; j < 4; j++){
+                    if (answers[i][j].selected){
+                        document.querySelector(`#result tbody tr:nth-child(${i + 1}) td:nth-child(${j + 2})`).innerHTML = "+";
+                    }
+                }
+                document.querySelector(`#result tbody tr:nth-child(${i + 1}) td:last-child`).innerHTML = "0";
+            }
+            document.querySelector(`#result tbody tr:nth-child(7) td:last-child`).innerHTML = "0";
+            document.querySelector("#result tbody tr:nth-child(7) td:nth-child(2)").innerHTML = answer7;
+            if (answers[0][0].checked){
+                score++;
+                document.querySelector(`#result tbody tr:nth-child(1) td:last-child`).innerHTML = "1";
+            }
+            if (answers[1][0].checked){
+                score++;
+                document.querySelector(`#result tbody tr:nth-child(2) td:last-child`).innerHTML = "1";
+            }
+            let answer3_count = 0;
+            let score3 = 0;
+            let answers3 = [];
+            for (let i = 0; i < 4; i++){
+                if (answers[2][i].checked){
+                    answer3_count++;
+                    answers3.push(answers[2][i].value)
+                }
+            }
+            if (answer3_count === 1){
+                if (answers3[0] === "print('Hello, World!')" || answers3[0] === "print('Hello', 'World!')"){
+                    score3 = 1;
+                }
+            } else if (answer3_count === 2){
+                if (answers3.includes("print('Hello, World!')") && answers3.includes("print('Hello', 'World!')")){
+                    score3 = 2;
+                } else if (answers3.includes("print('Hello, World!')") || answers3.includes("print('Hello', 'World!')")){
+                    score3 = 1;
+                }
+            }
+            score += score3;
+            document.querySelector(`#result tbody tr:nth-child(3) td:last-child`).innerHTML = score3;
+
+            let answer4_count = 0;
+            let score4 = 0;
+            let answers4 = [];
+            for (let i = 0; i < 4; i++){
+                if (answers[3][i].checked){
+                    answer4_count++;
+                    answers4.push(answers[3][i].value)
+                }
+            }
+            if (answer4_count === 1){
+                if (answers4[0] === "<head>" || answers4[0] === "<body>"){
+                    score4 = 1;
+                }
+            } else if (answer4_count === 2){
+                if (answers4.includes("<head>") && answers4.includes("<body>")){
+                    score4 = 2;
+                } else if (answers4.includes("<head>") || answers4.includes("<body>")){
+                    score4 = 1;
+                }
+            }
+            score += score4;
+            document.querySelector(`#result tbody tr:nth-child(4) td:last-child`).innerHTML = score4;
+
+            if (answers[4][1].selected){
+                score++;
+                document.querySelector(`#result tbody tr:nth-child(5) td:last-child`).innerHTML = "1";
+            }
+
+            let answer6_count = 0;
+            let score6 = 0;
+            let answers6 = [];
+            for (let i = 0; i < 4; i++){
+                if (answers[5][i].selected){
+                    answer6_count++;
+                    answers6.push(answers[5][i].value)
+                }
+            }
+            if (answer6_count === 1){
+                if (answers6[0] === "print" || answers6[0] === "open"){
+                    score6 = 1;
+                }
+            } else if (answer6_count === 2){
+                if (answers6.includes("print") && answers6.includes("open")){
+                    score6 = 2;
+                } else if (answers6.includes("print") || answers6.includes("open")){
+                    score6 = 1;
+                }
+            }
+            score += score6;
+            document.querySelector(`#result tbody tr:nth-child(6) td:last-child`).innerHTML = score6;
+
+            if (answer7 === "6"){
+                score++;
+                document.querySelector(`#result tbody tr:nth-child(7) td:last-child`).innerHTML = "1";
+            }
+
+            document.getElementById("score").innerHTML = score;
+            result.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+<form action="#"  target="dummyframe">
+    <label id="q1">1. What is the capital of Ukraine?
+        <br>
+        <input type="radio" name="q1" value="Kyiv">Kyiv
+        <input type="radio" name="q1" value="Lviv">Lviv
+        <input type="radio" name="q1" value="Kharkiv">Kharkiv
+        <input type="radio" name="q1" value="Odessa">Odessa
+    </label>
+    <br>
+    <br>
+    <label id="q2">2. What is the capital of France?
+        <br>
+        <input type="radio" name="q2" value="Paris">Paris
+        <input type="radio" name="q2" value="Lyon">Lyon
+        <input type="radio" name="q2" value="Marseille">Marseille
+        <input type="radio" name="q2" value="Toulouse">Toulouse
+    </label>
+    <br>
+    <br>
+    <label id="q3">3. What is valid Python code?
+        <br>
+        <input type="checkbox" name="q3" value="print('Hello, World!')">print('Hello, World!')<br>
+        <input type="checkbox" name="q3" value="print(Hello, World!)">print(Hello, World!)<br>
+        <input type="checkbox" name="q3" value="print('Hello', 'World!')">print('Hello', 'World!')<br>
+        <input type="checkbox" name="q3" value="print Hello, World!">print Hello, World!<br>
+    </label>
+    <br>
+    <label id="q4">4. What is valid HTML tag? <br>
+        <input type="checkbox" name="q4" value="<head>">&lthead&gt<br>
+        <input type="checkbox" name="q4" value="<body>">&ltbody&gt<br>
+        <input type="checkbox" name="q4" value="<list>">&ltlist&gt<br>
+        <input type="checkbox" name="q4" value="<break>">&ltbreak&gt<br>
+    </label>
+    <br>
+    <label>5. What is valid Python keyword?
+        <select id="q5">
+            <option value="stop">stop</option>
+            <option value="break">break</option>
+            <option value="func">func</option>
+            <option value="define">define</option>
+        </select>
+    </label>
+    <br>
+    <br>
+    <label>6. Select valid Python built-in functions
+        <br>
+        <select id="q6" multiple>
+            <option value="print">print</option>
+            <option value="file">file</option>
+            <option value="open">open</option>
+            <option value="println">println</option>
+        </select>
+    </label>
+    <br>
+    <br>
+    <label>7. Output of Python code: print(2 + 2 * 2)
+        <input type="text" name="q7" id="q7">
+    </label>
+    <br>
+    <br>
+    <button onclick="check_answers()">Завершити тест</button>
+    <br>
+    <br>
+    <div id="result" style="display: none;">
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answer 1</th>
+                <th>Answer 2</th>
+                <th>Answer 3</th>
+                <th>Answer 4</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td colspan="4"></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+        <p>Score: <span id="score"></span></p>
+    </div>
+</form>
+</body>
+</html>
