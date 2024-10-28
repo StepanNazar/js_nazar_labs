@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+    <script>
+        function validate() {
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('password').value;
+            const postalCode = document.getElementById('postalCode').value;
+
+            const emailPattern = /^[a-zA-Z0-9._-]+@pnu.edu.ua$/;
+            const namePattern = /^[A-ZА-ЯҐЄІЇ][a-zа-яґєії']+\s[A-ZА-ЯҐЄІЇ]+$/;
+            const loginPattern = /^[a-zA-Z]+$/;
+            const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[-!@#$%^&*]).{8,}$/;
+            const postalCodePattern = /^\d{5}$/;
+
+            const emailIsValid = emailPattern.test(email);
+            const nameIsValid = namePattern.test(name);
+            const loginIsValid = loginPattern.test(login);
+            const passwordIsValid = passwordPattern.test(password);
+            const postalCodeIsValid = postalCodePattern.test(postalCode);
+
+            const emailElement = document.getElementById('email');
+            const nameElement = document.getElementById('name');
+            const loginElement = document.getElementById('login');
+            const passwordElement = document.getElementById('password');
+            const postalCodeElement = document.getElementById('postalCode');
+            const emailCheck = document.getElementById('emailCheck');
+            const nameCheck = document.getElementById('nameCheck');
+            const loginCheck = document.getElementById('loginCheck');
+            const passwordCheck = document.getElementById('passwordCheck');
+            const postalCodeCheck = document.getElementById('postalCodeCheck');
+
+            if (emailIsValid) {
+                emailElement.style.borderColor = 'green';
+                emailCheck.innerHTML = "ok";
+            } else {
+                emailElement.style.borderColor = 'red';
+                emailCheck.innerHTML = "Invalid email. Must be in pnu.edu.ua domain";
+            }
+
+            if (nameIsValid) {
+                nameElement.style.borderColor = 'green';
+                nameCheck.innerHTML = "ok";
+            } else {
+                nameElement.style.borderColor = 'red';
+                nameCheck.innerHTML = "Invalid name. Must be in format: Firstname LASTNAME";
+            }
+
+            if (loginIsValid) {
+                loginElement.style.borderColor = 'green';
+                loginCheck.innerHTML = "ok";
+            }
+            else {
+                loginElement.style.borderColor = 'red';
+                loginCheck.innerHTML = "Invalid login. Must contain only latin letters";
+            }
+
+            if (passwordIsValid) {
+                passwordElement.style.borderColor = 'green';
+                passwordCheck.innerHTML = "ok";
+            } else {
+                passwordElement.style.borderColor = 'red';
+                passwordCheck.innerHTML = "Invalid password. Must contain at least one letter, one digit and one special character and be at least 8 characters long";
+            }
+
+            if (postalCodeIsValid) {
+                postalCodeElement.style.borderColor = 'green';
+                postalCodeCheck.innerHTML = "ok";
+            } else {
+                postalCodeElement.style.borderColor = 'red';
+                postalCodeCheck.innerHTML = "Invalid postal code. Must be 5 digits";
+            }
+        }
+    </script>
+</head>
+<body>
+<form>
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" required>
+    <span id="emailCheck"></span><br>
+    <label for="name">Ім'я та прізвище:</label>
+    <input type="text" id="name" name="name" required>
+    <span id="nameCheck"></span><br>
+    <label for="login">Логін:</label>
+    <input type="text" id="login" name="login" required>
+    <span id="loginCheck"></span><br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required>
+    <span id="passwordCheck"></span><br>
+    <label for="postalCode">Поштовий індекс:</label>
+    <input type="text" id="postalCode" name="postalCode" required>
+    <span id="postalCodeCheck"></span><br>
+    <button type="button" onclick="validate()">Submit</button>
+</form>
+</body>
+</html>

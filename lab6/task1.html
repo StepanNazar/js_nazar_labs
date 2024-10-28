@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+    <script>
+        function f() {
+            let s = document.getElementById("input").value;
+            let r = /^([a-z0-9]+)(\.[a-z0-9]+)*@([a-z0-9]+)(\.[a-z0-9]+)*$/i;
+            let a = s.match(r);
+            let output = document.getElementById("output");
+            output.innerHTML = "";
+            for (let i = 0; i < a.length; i++) {
+                output.innerHTML += "<hr> a[" + i + "] " + a[i];
+            }
+        }
+    </script>
+
+</head>
+<body>
+<input type="text" id="input" value="">
+<div id="output"></div>
+<button onclick="f()">Click me</button>
+</body>
+</html>
