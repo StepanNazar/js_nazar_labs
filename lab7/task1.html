@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+    <script>
+        function reverseWordOrder(string) {
+            return string.split(/\s+/).reverse().join(' ');
+        }
+        function noZeros(string) {
+            let array = string.split(' ').map(Number);
+            return array.filter(function (element) {
+                return element !== 0;
+            }).map(String).join(' ');
+        }
+        function reverser(string) {
+            return string.split('').reverse().join('');
+        }
+        function replace(string) {
+            string = string.replace(/([a-z_а-я]+) ([a-z_а-я]+) ([a-z_а-я]+)/i, "$1 $3 $2");
+            return string.replace(/ /g, ",")
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="reverseWordOrderInput" placeholder="string">
+<p id="reverseWordOrderOutput"></p>
+<button onclick="document.getElementById('reverseWordOrderOutput').innerText = reverseWordOrder(document.getElementById('reverseWordOrderInput').value)">reverseWordOrder</button>
+<br>
+<br>
+<input type="text" id="noZerosInput" placeholder="array">
+<p id="noZerosOutput"></p>
+<button onclick="document.getElementById('noZerosOutput').innerText = noZeros(document.getElementById('noZerosInput').value)">noZeros</button>
+<br>
+<br>
+<input type="text" id="reverserInput" placeholder="string">
+<p id="reverserOutput"></p>
+<button onclick="document.getElementById('reverserOutput').innerText = reverser(document.getElementById('reverserInput').value)">reverser</button>
+<br>
+<br>
+<input type="text" id="replaceInput" placeholder="string">
+<p id="replaceOutput"></p>
+<button onclick="document.getElementById('replaceOutput').innerText = replace(document.getElementById('replaceInput').value)">replace</button>
+
+</body>
+</html>

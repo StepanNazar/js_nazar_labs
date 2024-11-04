@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+    <script>
+        function toCamelCase(snakeCase) {
+            let words = snakeCase.split("_");
+            let camelCase = words[0];
+            for (let i = 1; i < words.length; i++) {
+                camelCase += words[i][0].toUpperCase() + words[i].slice(1);
+            }
+            return camelCase;
+        }
+        function toSnakeCase(camelCase) {
+            let snakeCase = camelCase[0].toLowerCase();
+            for (let i = 1; i < camelCase.length; i++) {
+                if (camelCase[i] === camelCase[i].toUpperCase()) {
+                    snakeCase += "_" + camelCase[i].toLowerCase();
+                } else {
+                    snakeCase += camelCase[i];
+                }
+            }
+            return snakeCase;
+        }
+        function replaceDateFormat(string) {
+            let regexp = /(\d{4})\/(\d{2})\/(\d{2})/g;
+            return string.replace(regexp, "$3.$2.$1");
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="toCamelCaseInput" placeholder="snake_case">
+<p id="toCamelCaseOutput"></p>
+<button onclick="document.getElementById('toCamelCaseOutput').innerText = toCamelCase(document.getElementById('toCamelCaseInput').value)">toCamelCase</button>
+<br>
+<br>
+<input type="text" id="toSnakeCaseInput" placeholder="camelCase">
+<p id="toSnakeCaseOutput"></p>
+<button onclick="document.getElementById('toSnakeCaseOutput').innerText = toSnakeCase(document.getElementById('toSnakeCaseInput').value)">toSnakeCase</button>
+<br>
+<br>
+<input type="text" id="replaceDateFormatInput" placeholder="yyyy/mm/dd">
+<p id="replaceDateFormatOutput"></p>
+<button onclick="document.getElementById('replaceDateFormatOutput').innerText = replaceDateFormat(document.getElementById('replaceDateFormatInput').value)">replaceDateFormat</button>
+</body>
+</html>

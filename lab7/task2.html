@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+    <script>
+        function f21(string1, string2) {
+            return string1.length > string2.length ? 1 : string1.length < string2.length ? -1 : 0;
+        }
+        function f22(string1, char) {
+            let indexes = [];
+            for (let i = 0; i < string1.length; i++) {
+                if (string1[i] === char) {
+                    indexes.push(i);
+                }
+            }
+            return "Indexes: " + indexes + ", count: " + indexes.length;
+        }
+        function f23(string) {
+            string = string[0].toUpperCase() + string.slice(1);
+            return string;
+        }
+        function f24(string) {
+            let vowels = "aeiouyуеіїоаєюя";
+            let count = 0;
+            for (let i = 0; i < string.length; i++) {
+                if (vowels.includes(string[i].toLowerCase())) {
+                    count++;
+                }
+            }
+            return count;
+        }
+        function f25(string) {
+            let regexp = /100% безкоштовно|збільшення продажів|тільки сьогодні|не видаляйте/gi;
+            return regexp.test(string);
+        }
+        function f26(string, maxLength) {
+            if (maxLength < 3) {
+                return "...";
+            }
+            return string.length > maxLength ? string.slice(0, maxLength - 3) + "..." : string;
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="f21Input1" placeholder="string1">
+<input type="text" id="f21Input2" placeholder="string2">
+<p id="f21Output"></p>
+<button onclick="document.getElementById('f21Output').innerText = f21(document.getElementById('f21Input1').value, document.getElementById('f21Input2').value)">f21</button>
+<br>
+<br>
+<input type="text" id="f22Input1" placeholder="string">
+<input type="text" id="f22Input2" placeholder="char">
+<p id="f22Output"></p>
+<button onclick="document.getElementById('f22Output').innerText = f22(document.getElementById('f22Input1').value, document.getElementById('f22Input2').value)">f22</button>
+<br>
+<br>
+<input type="text" id="f23Input" placeholder="string">
+<p id="f23Output"></p>
+<button onclick="document.getElementById('f23Output').innerText = f23(document.getElementById('f23Input').value)">f23</button>
+<br>
+<br>
+<input type="text" id="f24Input" placeholder="string">
+<p id="f24Output"></p>
+<button onclick="document.getElementById('f24Output').innerText = f24(document.getElementById('f24Input').value)">f24</button>
+<br>
+<br>
+<input type="text" id="f25Input" placeholder="string">
+<p id="f25Output"></p>
+<button onclick="document.getElementById('f25Output').innerText = f25(document.getElementById('f25Input').value)">f25</button>
+<br>
+<br>
+<input type="text" id="f26Input1" placeholder="string">
+<input type="text" id="f26Input2" placeholder="maxLength">
+<p id="f26Output"></p>
+<button onclick="document.getElementById('f26Output').innerText = f26(document.getElementById('f26Input1').value, document.getElementById('f26Input2').value)">f26</button>
+
+</body>
+</html>
