@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+    <script>
+        let daysOfWeek = ["неділя", "понеділок", "вівторок", "середа", "четвер", "п'ятниця",
+            "субота"];
+        let months = ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня",
+            "серпня", "вересня", "жовтня", "листопада", "грудня"];
+
+        function f21() {
+            let date = new Date();
+            let day = date.getDate();
+            let month = date.getMonth();
+            let year = date.getFullYear();
+            let dayOfWeek = date.getDay();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            document.getElementById('f21Output').innerText = "Дата: " + day + " " +
+                months[month] + " " + year + " року\n" +
+                "День тижня: " + daysOfWeek[dayOfWeek] + "\n" +
+                "Час: " + hours + ":" + minutes.toString().padStart(2, '0');
+        }
+
+        function f22() {
+            let date = new Date();
+            let dayOfWeek = date.getDay();
+            document.getElementById('f22Output').innerText = "Номер дня тижня: " +
+                (dayOfWeek === 0 ? 7 : dayOfWeek) + "\n" +
+                "Назва дня тижня: " + daysOfWeek[dayOfWeek];
+        }
+
+        function f23() {
+            let n = parseInt(document.getElementById('f23Input').value);
+            let date = new Date();
+            date.setDate(date.getDate() + n);
+            let day = date.getDate();
+            let month = date.getMonth();
+            let year = date.getFullYear();
+            document.getElementById('f23Output').innerText = "Дата: " + day + " " +
+                months[month] + " " + year + " року\n" +
+                "День тижня: " + daysOfWeek[date.getDay()] + "\n" +
+                (n < 0 ? "Минула дата" : "Майбутня дата");
+        }
+
+        function f24() {
+            let year = parseInt(document.getElementById('f24Input1').value);
+            let month = parseInt(document.getElementById('f24Input2').value);
+            let date = new Date(year, month, 0);
+            document.getElementById('f24Output').innerText = "Останній день місяця: " +
+                date.getDate();
+        }
+
+        function f25() {
+            let date = new Date();
+            let seconds = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
+            let nextDaySeconds = 86400 - seconds;
+            document.getElementById('f25Output').innerText = "Кількість секунд, яка пройшла від початку сьогоднішнього дня: "
+                + seconds + "\n" + "Кількість секунд до початку наступного дня: " + nextDaySeconds;
+        }
+
+        function f26() {
+            let input = document.getElementById('f26Input').value;
+            let date = new Date();
+            let day = parseInt(input.slice(0, 2));
+            let month = parseInt(input.slice(3, 5)) - 1;
+            let year = parseInt(input.slice(6, 10));
+            let hours = parseInt(input.slice(11, 13));
+            let minutes = parseInt(input.slice(14, 16));
+            let seconds = parseInt(input.slice(17, 19));
+            date.setDate(day);
+            date.setMonth(month);
+            date.setFullYear(year);
+            date.setHours(hours);
+            date.setMinutes(minutes);
+            date.setSeconds(seconds);
+            let diff = Math.abs((Date.now() - date) / 1000);
+            if (diff < 60) {
+                document.getElementById('f26Output').innerText = diff + " сек. назад";
+            } else if (diff < 3600) {
+                document.getElementById('f26Output').innerText = Math.floor(diff / 60) + " хв. назад";
+            } else {
+                document.getElementById('f26Output').innerText = date.getDate().toString().padStart(2, '0') +
+                    "." + (date.getMonth() + 1).toString().padStart(2, '0') + "." +
+                    date.getFullYear() + " " + date.getHours().toString().padStart(2, '0') + ":" +
+                    date.getMinutes().toString().padStart(2, '0');
+            }
+        }
+    </script>
+</head>
+<body>
+<h3>Завдання 2.1.Виведення поточної дати, дня тижня і часу</h3>
+<button onclick="f21()">Виконати</button>
+<p id="f21Output"></p>
+<h3>Завдання 2.2.Виведення дня і номера тижня</h3>
+<button onclick="f22()">Виконати</button>
+<p id="f22Output"></p>
+<h3>Завдання 2.3.Знайти дату, яка була N днів назад чи вперед</h3>
+<input type="text" id="f23Input" placeholder="N">
+<button onclick="f23()">Виконати</button>
+<p id="f23Output"></p>
+<h3>Завдання 2.4.Визначення останнього дня місяця</h3>
+<input type="text" id="f24Input1" placeholder="Рік">
+<input type="text" id="f24Input2" placeholder="Місяць">
+<button onclick="f24()">Виконати</button>
+<p id="f24Output"></p>
+<h3>Завдання 2.5.Кількість секунд</h3>
+<button onclick="f25()">Виконати</button>
+<p id="f25Output"></p>
+<h3>Завдання 2.6.Формування об’єкта date</h3>
+<input type="text" id="f26Input" placeholder="дд.мм.рррр год:хв:сек">
+<button onclick="f26()">Виконати</button>
+<p id="f26Output"></p>
+</body>
+</html>

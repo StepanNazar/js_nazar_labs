@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+    <script>
+        let time = {
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+        };
+        function currentTime() {
+            let date = new Date();
+            time.hours = date.getHours();
+            time.minutes = date.getMinutes();
+            time.seconds = date.getSeconds();
+            showTime();
+        }
+        function showTime() {
+            document.getElementById('time').innerText = time.hours.toString().padStart(2, '0') + ":" + time.minutes.toString().padStart(2, '0') + ":" + time.seconds.toString().padStart(2, '0');
+        }
+        function addSeconds() {
+            let date = new Date();
+            let seconds = parseInt(document.getElementById('seconds').value);
+            date.setHours(time.hours);
+            date.setMinutes(time.minutes);
+            date.setSeconds(time.seconds + seconds);
+            time.hours = date.getHours();
+            time.minutes = date.getMinutes();
+            time.seconds = date.getSeconds();
+            showTime();
+        }
+        function addMinutes() {
+            let date = new Date();
+            date.setHours(time.hours);
+            date.setMinutes(time.minutes);
+            date.setSeconds(time.seconds);
+            let minutes = parseInt(document.getElementById('minutes').value);
+            date.setMinutes(date.getMinutes() + minutes);
+            time.hours = date.getHours();
+            time.minutes = date.getMinutes();
+            time.seconds = date.getSeconds();
+            showTime();
+        }
+        function addHours() {
+            let date = new Date();
+            date.setHours(time.hours);
+            date.setMinutes(time.minutes);
+            date.setSeconds(time.seconds);
+            let hours = parseInt(document.getElementById('hours').value);
+            date.setHours(date.getHours() + hours);
+            time.hours = date.getHours();
+            time.minutes = date.getMinutes();
+            time.seconds = date.getSeconds();
+            showTime();
+        }
+    </script>
+</head>
+<body onload="currentTime()">
+<p id="time"></p>
+<button onclick="currentTime()">Current time</button>
+<input type="number" id="seconds" placeholder="seconds">
+<button onclick="addSeconds()">Add seconds</button>
+<br>
+<input type="number" id="minutes" placeholder="minutes">
+<button onclick="addMinutes()">Add minutes</button>
+<br>
+<input type="number" id="hours" placeholder="hours">
+<button onclick="addHours()">Add hours</button>
+</body>
+</html>
