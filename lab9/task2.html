@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts/script.js"></script>
+    <script>
+        let label1, text, to, from, logoimg, label2, animationInterval, isrunning = false;
+        const animationDelay = 10000, animationDuration = 5000;
+
+        function drawLabel1(progress) {
+            let result = (to - from) * progress + from;
+            label1.innerHTML = "‎ " + text.slice(0, Math.ceil(result))
+        }
+
+        function drawLabel2(progress) {
+            let r = Math.floor(255 * (1 - Math.abs(progress - 0.5) * 2));
+            let g = Math.floor(255 * (1 - Math.abs(progress - 0.25) * 4));
+            let b = Math.floor(255 * (1 - Math.abs(progress - 0.75) * 4));
+            label2.style.color = `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function blinkLabel2(progress) {
+            label2.style.opacity = Math.abs(Math.sin(progress * Math.PI)).toString();
+        }
+
+        function drawImg(progress) {
+            logoimg.style.transform = "rotate(" + 360 * progress + "deg)";
+        }
+
+
+        function animation() {
+            if (isrunning) {
+                return;
+            }
+            isrunning = true;
+            setTimeout(() => {
+                isrunning = false;
+            }, animationDuration);
+            animate({
+                duration: animationDuration,
+                timing: bounce,
+                draw: drawLabel1
+            });
+            animate({
+                duration: animationDuration,
+                timing: linear,
+                draw: drawImg
+            });
+            animate({
+                duration: animationDuration,
+                timing: upsideParabolic,
+                draw: drawLabel2
+            });
+            animate({
+                duration: 5000,
+                timing: bounce,
+                draw: blinkLabel2
+            });
+        }
+
+        function startAnimationInterval() {
+            animationInterval = setInterval(animation, animationDelay);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let logo = document.getElementById("logoImg");
+            logo.addEventListener("click", function () {
+                clearInterval(animationInterval);
+                animation();
+                setTimeout(() => {
+                    startAnimationInterval();
+                }, animationDuration);
+
+            });
+            label1 = document.getElementById("text");
+            text = label1.innerHTML;
+            to = text.length;
+            from = 0;
+            logoimg = document.getElementById("logoImg");
+            label2 = document.getElementById("text2");
+        });
+        startAnimationInterval();
+    </script>
+</head>
+<body>
+click on the logo to start the animation or wait
+<script>document.write(animationDelay / 1000)</script>
+seconds for the next one
+<div id="logo">
+    <div id="logoImg"></div>
+    <div id="text"> console.log("121 Інженерія програмного забезпечення");</div>
+    <div id="text2"> ПНУ ім. В. Стефаника</div>
+</div>
+
+</body>
+</html>

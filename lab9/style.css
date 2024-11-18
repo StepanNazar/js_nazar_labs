@@ -1,0 +1,43 @@
+#field {
+    height: 200px;
+    border-bottom: 3px black groove;
+    position: relative;
+}
+
+#ball {
+    position: absolute;
+    cursor: pointer;
+}
+
+#logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    font: 20px Arial;
+    font-weight: bold;
+}
+
+#text {
+    margin: 30px;
+}
+
+#text2 {
+    color: #2f343a;
+    opacity: 0;
+}
+
+#logoImg {
+    width: 160px;
+    height: 160px;
+    background-image: url("images/logo.webp");
+    background-size: cover;
+    transition: width 0.5s, height 0.5s, margin-bottom 0.5s;
+}
+
+#logoImg:hover {
+    width: 180px;
+    height: 180px;
+    margin-bottom: -20px;
+}

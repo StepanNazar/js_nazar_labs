@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+    <script src="scripts/script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        let ball;
+        function drawVertical(time) {
+            ball.style.top = (160 * time).toString() + "px";
+        }
+
+        function drawHorizontal(time) {
+            ball.style.left = (100 * time).toString() + "px";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            ball = document.getElementById("ball");
+            ball.addEventListener("click", function () {
+                animate({
+                    duration: 2000,
+                    timing: makeEaseOut(bounce),
+                    draw: drawVertical
+                });
+                animate({
+                    duration: 2000,
+                    timing: makeEaseOut(linear),
+                    draw: drawHorizontal
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+Click on the ball to start the animation
+
+<div id="field">
+    <img src="images/ball.svg" width="40" height="40" id="ball">
+</div>
+
+</body>
+
+</html>
