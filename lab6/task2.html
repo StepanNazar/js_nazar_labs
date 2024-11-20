@@ -14,7 +14,7 @@
             const emailPattern = /^[a-zA-Z0-9._-]+@pnu.edu.ua$/;
             const namePattern = /^[A-ZА-ЯҐЄІЇ][a-zа-яґєії']+\s[A-ZА-ЯҐЄІЇ]+$/;
             const loginPattern = /^[a-zA-Z]+$/;
-            const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[-!@#$%^&*]).{8,}$/;
+            const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[-!@#$%^&*_]).{8,}$/;
             const postalCodePattern = /^\d{5}$/;
 
             const emailIsValid = emailPattern.test(email);
