@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let $task1 = $('#task1');
+            $task1.bind('click', function () {
+                $(this).addClass('click');
+            });
+            $task1.bind('dblclick', function () {
+                $(this).removeClass('click');
+            });
+            $('#task2button1').bind('click', function () {
+                alert('Одинарний клік');
+            });
+            $('#task2button2').bind('dblclick', function () {
+                alert('Подвійний клік');
+            });
+            $('#task3btn').bind('click', function () {
+                $('#task3img').show();
+            });
+            let $task3img = $('#task3img');
+            $task3img.bind('click', function () {
+                $(this).hide();
+            });
+            $task3img.hide();
+            $task3img.bind('mousemove', function (e) {
+                let $task3popup = $('#task3popup');
+                $task3popup.show();
+                $task3popup.css({
+                    'top': e.pageY,
+                    'left': e.pageX,
+                    'position': 'absolute',
+                    'padding': '5px',
+                    'background-color': 'black',
+                    'color': 'white'
+                });
+            });
+            $task3img.bind('mouseleave', function () {
+                $('#task3popup').hide();
+            });
+            $('#task3popup').hide();
+            $("form").submit(function () {
+                let $span = $("span");
+                if ($("input:first").val() === "correct") {
+                    $span.text("Перевіряєм...").show().fadeOut(5000);
+                    return true;
+                }
+                $span.text("Неправильно!").show().fadeOut(1000);
+                return false;
+            });
+
+        });
+    </script>
+    <link rel="stylesheet" href="styles/task3.css">
+</head>
+<body>
+<H1> task1 </h1>
+<div id="task1"> Click/Doubleclick</div>
+</body>
+<h1>task2</h1>
+<button id="task2button1">Click me</button>
+<button id="task2button2">Double click me</button>
+<h1>task3</h1>
+<p id="task3btn">Показати зображення</p>
+<div id="task3img">
+    <div id="task3popup">Підпис до зображення</div>
+</div>
+<h1>task4</h1>
+<p> Введіть в текстове поле слово 'correct'.</p>
+
+<form action="javascript:alert('Успішно!');">
+    <div>
+        <input type="text"/>
+        <input type="submit"/>
+    </div>
+</form>
+<span></span>
+
+</html>

@@ -1,0 +1,11 @@
+.click {
+    background-color: #f00;
+    border: 1px solid #002d53;
+}
+
+#task3img {
+    width: 200px;
+    height: 200px;
+    background: url('../images/1.jpg') no-repeat center;
+    background-size: cover;
+}

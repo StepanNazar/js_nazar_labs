@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var $text = $('#hide_text');// присвоюємо змінній text блок з id = hide_text
+            $text.hide();// приховуємо отриманий блок
+            $('.button').click(function () {// при кліці на HTML елемент з класом button
+                $text.show(200);// показуємо прихований блок із затримкою 200 мілісекунд
+                $("p:first").text("DOM first!");
+                jQuery("p:last").text("DOM last!");
+            });
+            $("body *").hover(function () {
+                $(this).addClass("hover");
+            }, function () {
+                $(this).removeClass("hover");
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="styles/task2.css">
+</head>
+<body>
+<H1> Контент сторінки </h1>
+<a href="#" class="button"> Натисніть, щоб показати текст </a>
+<div id="hide_text"> Демонстраційний прихований текст</div>
+<p> first!</p>
+<p> something </p>
+<p> something </p>
+<p> something </p>
+<p> last!</p>
+</body>
+</html>
