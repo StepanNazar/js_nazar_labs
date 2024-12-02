@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        function htmlMethodDemo() {
+            let string = "Inner HTML of divs:\n";
+            $('div').each(function (index, div) {
+                string += index + 1 + ": " + $(div).html() + "\n";
+            });
+            alert(string);
+        }
+        function cssMethodDemo() {
+            let string = "background-color of divs:\n";
+            $('div').each(function (index, div) {
+                string += index + 1 + ": " + $(div).css('background-color') + "\n";
+            });
+            alert(string);
+        }
+        $( function () {
+            $('#html').click(function () {
+                htmlMethodDemo();
+            });
+            $('#css').click(function () {
+                cssMethodDemo();
+            });
+            $('#val').click(function () {
+                alert($('#valTextarea').val());
+            });
+            $('#attrAttrName').click(function () {
+                let cols = $('#valTextarea').attr('cols');
+                $('#setCols').attr('value', cols);
+                alert("textarea has attribute 'cols': " + cols);
+            });
+            $('#attrAttrNameValue').click(function () {
+                let cols = $('#setCols').val();
+                $('#valTextarea').attr('cols', cols);
+                alert("textarea set attribute 'cols' with value: " + cols);
+            });
+            $('#attrAttrs').click(function () {
+                let cols = $('#setCols').val();
+                let rows = $('#setRows').val();
+                $('#valTextarea').attr({
+                    cols: cols,
+                    rows: rows
+                });
+                alert("textarea set attributes 'cols' and 'rows' with values: " + cols + " and " + rows);
+            });
+            $('#attrAttrNameFunction').click(function () {
+                let cols = $('#setCols').val();
+                $('#valTextarea').attr('cols', function (index, attr) {
+                    return parseInt(attr) + parseInt(cols);
+                });
+                alert("textarea set attribute 'cols' with value: " + cols + " added to previous value");
+            });
+            $('#removeAttr').click(function () {
+                $('#valTextarea').removeAttr('cols');
+                alert("textarea removed attribute 'cols'");
+            });
+        });
+    </script>
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+<!--Розробити сценарії, які демонструють виконання усіх наступних методів:
+.html();
+.css();
+.val();
+.attr (ім'я атрибута), .attr (ім'я атрибута, значення), .attr (атрибути), .attr (ім'я атрибута, функція), .removeAttr()
+-->
+<div><span>Example of</span></div>
+<div style="background-color: maroon"><span>using <i>.html()</i></span></div>
+<div><span>and <i>.css()</i></span></div>
+<button id="html">.html()</button>
+<button id="css">.css()</button>
+<br>
+<textarea id="valTextarea" cols="30" rows="10"></textarea>
+<br>
+<button id="val">.val()</button>
+<button id="attrAttrName">.attr(ім'я атрибута)</button>
+<br>
+Введіть cols: <input type="number" name="setCols" id="setCols"> <br>
+Введіть rows: <input type="number" name="setRows" id="setRows"> <br>
+<button id="attrAttrNameValue">.attr(ім'я атрибута, значення)</button> задасть cols
+<br>
+<button id="attrAttrs">.attr(атрибути)</button> задасть cols і rows
+<br>
+<button id="attrAttrNameFunction">.attr(ім'я атрибута, функція)</button> додасть до cols
+<br>
+<button id="removeAttr">.removeAttr()</button> видалить cols
+</body>
+</html>

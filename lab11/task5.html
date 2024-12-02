@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task5</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#extendBtn').click(function () {
+                let output = '$.extend() method demonstration:\n';
+                let obj1 = {name: 'John', age: 30};
+                let obj2 = {city: 'New York', job: 'Developer'};
+                let mergedObj = $.extend({}, obj1, obj2);
+                output += 'Original obj1: ' + JSON.stringify(obj1) + '\n';
+                output += 'Original obj2: ' + JSON.stringify(obj2) + '\n';
+                output += 'Merged Object: ' + JSON.stringify(mergedObj) + '\n';
+                $('#output').text(output);
+            });
+
+            $('#fnExtendBtn').click(function () {
+                let output = '$.fn.extend() method demonstration:\n';
+                $.fn.extend({
+                    highlightText: function () {
+                        return this.each(function () {
+                            $(this).css('background-color', 'yellow')
+                                .css('font-weight', 'bold');
+                        });
+                    },
+                    countWords: function () {
+                        return this.text().trim().split(/\s+/).length;
+                    }
+                });
+                output += 'Added custom methods to jQuery:\n';
+                output += '1. $().highlightText(): Highlights text\n';
+                output += '2. $().countWords(): Counts words in element\n\n';
+                let wordCount = $('#demoText').countWords();
+                output += 'Word count in demo text: ' + wordCount;
+                $('#demoText').highlightText();
+                $('#output').text(output);
+            });
+
+            $('#globalEvalBtn').click(function () {
+                let output = '$.globalEval() method demonstration:\n';
+                let scriptToEval = "globalVariable = 'Hello from global eval!';";
+                try {
+                    $.globalEval(scriptToEval);
+                    output += 'Executed global script:\n' + scriptToEval + '\ncheck new variable in console\n';
+                } catch (error) {
+                    output += 'Error in global eval: ' + error.message;
+                }
+                $('#output').text(output);
+            });
+
+            $('#grepBtn').click(function () {
+                let output = '$.grep() method demonstration:\n' +
+                    'it filters an array based on a predicate function\n';
+                let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                let evenNumbers = $.grep(numbers, function (num) {
+                    return num % 2 === 0;
+                });
+                let largeNumbers = $.grep(numbers, function (num) {
+                    return num > 5;
+                });
+                output += 'Original Array: ' + JSON.stringify(numbers) + '\n';
+                output += 'Even Numbers: ' + JSON.stringify(evenNumbers) + '\n';
+                output += 'Numbers > 5: ' + JSON.stringify(largeNumbers);
+                $('#output').text(output);
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #output {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <button id="extendBtn">$.extend()</button>
+    <button id="fnExtendBtn">$.fn.extend()</button>
+    <button id="globalEvalBtn">$.globalEval()</button>
+    <button id="grepBtn">$.grep()</button>
+</div>
+
+<div id="demoText">
+    This is a sample text to demonstrate word counting and highlighting.
+</div>
+
+<h2>Output:</h2>
+<pre id="output"></pre>
+</body>
+</html>

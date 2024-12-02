@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#prependBtn').click(function () {
+                $('.container').prepend('<div class="box">New element prepended!</div>');
+            });
+            $('#cloneBtn').click(function () {
+                let clonedBox = $('.box').first().clone();
+                clonedBox.text(function (index, text) {
+                    return text + ' (cloned)';
+                });
+                $('.container').append(clonedBox);
+            });
+            $('#heightBtn').click(function () {
+                let output = '';
+                let box = $('.box');
+                box.height(function (index, currentHeight) {
+                    output += `Box ${index + 1}:\n`;
+                    output += `  .height(): ${currentHeight}px\n`;
+                    output += `  .outerHeight(): ${$(this).outerHeight()}px\n`;
+                    return currentHeight + 20;
+                });
+                $('#output').text(output);
+            });
+        });
+    </script>
+    <style>
+        .box {
+            background-color: lightblue;
+            border: 1px solid blue;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        #output {
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box">Initial Box 1</div>
+    <div class="box">Initial Box 2</div>
+</div>
+
+<div>
+    <button id="prependBtn">.prepend() - Add New Element</button>
+    <button id="cloneBtn">.clone() - Clone First Box</button>
+    <button id="heightBtn">.height() and .outerHeight()</button>
+</div>
+
+<pre id="output"></pre>
+</body>
+</html>

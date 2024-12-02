@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#childrenBtn').click(function () {
+                let output = '.children() method of level1:\n';
+                $('.level1').children().each(function (index) {
+                    output += `Child ${index + 1}: ${this.tagName} - text:${$(this).text()}\n`;
+                });
+                $('#output').text(output);
+            });
+            $('#isBtn').click(function () {
+                let output = '.is() method:\n';
+                $('*').each(function () {
+                    output += `${this.tagName} - ${$(this).attr('class') || 'No class'}\n`;
+                    output += `Is this element a div? ${$(this).is('div')}\n`;
+                    output += `Has class 'level3'? ${$(this).is('.level3')}\n`;
+                });
+                $('#output').text(output);
+            });
+            $('#parentsBtn').click(function () {
+                let output = '.parents() method:\n Parents of Level 3 Container 3:\n';
+                $('#level3-3').parents().each(function () {
+                    output += `Parent: ${this.tagName} - ${$(this).attr('class') || 'No class'}\n`;
+                });
+                $('#output').text(output);
+            });
+            $('#closestBtn').click(function () {
+                let output = '.closest() method:\n';
+                $('.level3 span').each(function () {
+                    let closestParent = $(this).closest('.level1');
+                    output += `Closest .level1 to ${
+                        this.tagName} - ${$(this).attr('class') || 'No class'}
+                        contains: ${closestParent.text()}\n`;
+                });
+                $('#output').text(output);
+            });
+            $('#parentsUntilBtn').click(function () {
+                let output = '.parentsUntil() method:\n';
+                $('#level3-3').parentsUntil('.container').each(function () {
+                    output += `Parent: ${this.tagName} - ${$(this).attr('class') || 'No class'}\n`;
+                });
+                $('#output').text(output);
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            margin-bottom: 20px;
+        }
+
+        .level1 {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+
+        .level2 {
+            background-color: #e0e0e0;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #999;
+        }
+
+        .level3 {
+            background-color: #d0d0d0;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #666;
+        }
+
+        #output {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="level1">
+        Level 1 Container
+        <div class="level2">
+            Level 2 Container
+            <div class="level3">
+                Level 3 Container 1
+                <span>Span in Level 3</span>
+            </div>
+            <div class="level3">
+                Level 3 Container 2
+                <span>Another Span in Level 3</span>
+            </div>
+        </div>
+        <div class="level2">
+            Level 2 Container 2
+            <div class="level3" id="level3-3">
+                Level 3 Container 3
+                <span>Span in Level 3</span>
+            </div>
+    </div>
+</div>
+
+<div>
+    <button id="childrenBtn">.children()</button>
+    <button id="isBtn">.is()</button>
+    <button id="parentsBtn">.parents()</button>
+    <button id="closestBtn">.closest()</button>
+    <button id="parentsUntilBtn">.parentsUntil()</button>
+</div>
+
+<h2>Output:</h2>
+<pre id="output"></pre>
+</body>
+</html>
