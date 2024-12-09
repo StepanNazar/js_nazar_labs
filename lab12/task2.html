@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        let timeOutId = null;
+        function forward() {
+            $("#logoImg").animate({
+                    width: "-=50px",
+                    height: "-=50px",
+                    marginBottom: "+=50px"
+                },
+                {
+                    duration: 1000,
+                    easing: "linear",
+                    complete: function () {
+                        backward();
+                    }
+                }
+            );
+            $("#text").animate({
+                    fontSize: "+=5px"
+                },
+                {
+                    duration: 1000,
+                    easing: "linear"
+                }
+            );
+            $("#text2").animate({
+                    opacity: 4,
+                },
+                {
+                    duration: 1000,
+                    easing: "linear"
+                }
+            );
+        }
+        function backward() {
+            $("#logoImg").animate({
+                    width: "+=50px",
+                    height: "+=50px",
+                    marginBottom: "-=50px"
+                },
+                {
+                    duration: 1000,
+                    easing: "linear",
+                    complete: function () {
+                        timeOutId = setTimeout(forward, 5000);
+                    }
+                }
+            );
+            $("#text").animate({
+                    fontSize: "-=5px"
+                },
+                {
+                    duration: 1000,
+                    easing: "linear"
+                }
+            );
+            $("#text2").animate({
+                    opacity: 0,
+                },
+                {
+                    duration: 1000,
+                    easing: "linear"
+                }
+            );
+        }
+        $(function () {
+            $("#logo").click(function () {
+                // reset animation
+                $("#logoImg").stop(true, true);
+                $("#text").stop(true, true);
+                $("#text2").stop(true, true);
+                $("#logoImg").clearQueue();
+                $("#text").clearQueue();
+                $("#text2").clearQueue();
+                $("#logoImg").css("width", "160px");
+                $("#logoImg").css("height", "160px");
+                $("#logoImg").css("margin-bottom", "0px");
+                $("#text").css("font-size", "20px");
+                $("#text2").css("opacity", "0");
+                clearTimeout(timeOutId);
+                forward();
+            })
+        });
+        timeOutId = setTimeout(forward, 5000);
+    </script>
+</head>
+<body>
+<div id="logo">
+    <div id="logoImg"></div>
+    <div id="text"> console.log("121 Інженерія програмного забезпечення");</div>
+    <div id="text2"> ПНУ ім. В. Стефаника</div>
+</div>
+</body>
+</html>

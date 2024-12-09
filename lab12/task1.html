@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            border: #2f343a 1px solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("#dequeue").click(function() {
+                $("div").queue(function() {
+                    $(this).animate({marginLeft: '200px'}, 1000);
+                    $(this).animate({marginLeft: '0'}, 1000);
+                    $(this).dequeue(); // call next function in queue
+                });
+            });
+            $("#fadein").click(function() {
+                $("div").fadeIn(1000);
+            });
+            $("#fadeout").click(function() {
+                $("div").fadeOut(1000);
+            });
+            $("#fadetoggle").click(function() {
+                $("div").fadeToggle(1000);
+            });
+        });
+    </script>
+</head>
+<body>
+<div>Example div</div>
+<button id="dequeue">.dequeue()</button>
+<button id="fadein">.fadeIn()</button>
+<button id="fadeout">.fadeOut()</button>
+<button id="fadetoggle">.fadeToggle()</button>
+<pre>
+    $(function() {
+            $("#dequeue").click(function() {
+                $("div").queue(function() {
+                    $(this).animate({marginLeft: '200px'}, 1000);
+                    $(this).animate({marginLeft: '0'}, 1000);
+                    $(this).dequeue(); // call next function in queue
+                });
+            });
+            $("#fadein").click(function() {
+                $("div").fadeIn(1000);
+            });
+            $("#fadeout").click(function() {
+                $("div").fadeOut(1000);
+            });
+            $("#fadetoggle").click(function() {
+                $("div").fadeToggle(1000);
+            });
+        });
+</pre>
+</body>
+</html>
